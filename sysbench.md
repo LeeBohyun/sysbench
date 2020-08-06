@@ -29,13 +29,13 @@ $ make install
 ```
 
 cf) If you have MySQL headers and libraries in non-standard locations, you can specify them explicitly with `--with-mysql-includes` and `--with-mysql-libs` options to `./configure` like below example.
-check if your mysql library is added in ```~/.bashrc```. If not, export library path. 
-```bash
-export LD_LIBRARY_PATH=/home/lbh/mysql-5.7.24/lib/
-```
-
 ```bash
 $ ./configure --with-mysql-includes=/home/lbh/mysql-5.7.24/include --with-mysql-libs=/home/lbh/mysql-5.7.24/lib
+```
+
+Check if your mysql library is added in ```~/.bashrc```. If not, export library path. 
+```bash
+export LD_LIBRARY_PATH=/home/lbh/mysql-5.7.24/lib/
 ```
 
 ## Sysbench Data Load
