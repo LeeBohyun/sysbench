@@ -37,6 +37,14 @@ Check if your mysql library is added in ```~/.bashrc```. If not, export library 
 ```bash
 export LD_LIBRARY_PATH=/home/lbh/mysql-5.7.24/lib/
 ```
+## Sysbench Create Database
+Create database for Sysbench Testing:
+```bash
+$ mysql -uroot
+
+root:(none)> create database sbtest;
+root:(none)> quit
+```
 
 ## Sysbench Data Load
 
