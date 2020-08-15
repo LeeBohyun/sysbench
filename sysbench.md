@@ -77,8 +77,8 @@ $ sysbench bulk_insert cleanup --threads=20
 ## OLTP Insert
 ### InnoDB
 ```bash
-$  sysbench oltp_insert.lua --threads=100 --time=3600 --table-size=5000000  --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=InnoDB --mysql-port=3306  prepare 
-$  sysbench oltp_insert.lua run --threads=100 --time=180 --table-size=5000000 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=InnoDB --mysql-port=3306 --events=0 
+$  sysbench oltp_insert.lua --threads=100 --time=3600 --table-size=5000000  --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock --mysql-user=root --mysql-password=evia6587 --mysql-port=3306  prepare 
+$  sysbench oltp_insert.lua run --threads=100 --time=180 --table-size=5000000 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock --mysql-user=root --mysql-password=evia6587 --mysql-port=3306 --events=0 
 $ sysbench bulk_insert cleanup --threads=100
 ```
 ### MyRocks
