@@ -58,21 +58,33 @@ sysbench --test=/home/lbh/sysbench-1.0.12/sysbench/tests/oltp_legacy/oltp.lua --
 ```bash
 sysbench --test=/home/lbh/sysbench-1.0.12/tests/include/oltp_legacy/oltp.lua --mysql-host=localhost  --mysql-db=sbtest --mysql-user=root --mysql-password=evia6587 --max-requests=0  --oltp-table-size=2000000 --time=259200  --oltp-tables-count=200 --report-interval=10 --db-ps-mode=disable  --random-points=10 --mysql-table-engine=InnoDB --mysql-port=3307 --mysql-socket=/tmp/mysql.sock1 --num-threads=128  run |tee /home/lbh/result/sb-ns.txt
 ```
-## oltp_insert.lua
 
-## bulk_insert.lua
+## Bulk Insert 
 Bulk insert does concurrent multi-low inserts, we specify how many threads we want and each one inserts into its own table. So the total number of tables is the same as the number of threads.
-- INNODB
+### InnoDB
 ```bash
 $  sysbench bulk_insert.lua  --threads=20 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=InnoDB --mysql-port=3306  prepare 
 $ sysbench bulk_insert run --threads=20 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=InnoDB --mysql-port=330--events=0 --time=3600
 $ sysbench bulk_insert cleanup --threads=20
 ```
--MyRocks
+### MyRocks
 ```bash
 $  sysbench bulk_insert.lua  --threads=20 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock1 --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=rocksdb --mysql-port=3307  prepare 
 $ sysbench bulk_insert run  --threads=20 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock1 --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=rocksdb --mysql-port=3307 --events=0 --time=3600
 $ sysbench bulk_insert cleanup --threads=20
+```
+## OLTP Insert
+### InnoDB
+```bash
+$  sysbench oltp_insert.lua --threads=100 --time=3600 --table-size=5000000  --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=InnoDB --mysql-port=3306  prepare 
+$  sysbench oltp_insert.lua run --threads=100 --time=180 --table-size=5000000 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=InnoDB --mysql-port=3306 --events=0 
+$ sysbench bulk_insert cleanup --threads=100
+```
+### MyRocks
+```bash
+$  sysbench oltp_insert.lua --threads=100 --time=3600 --table-size=5000000 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock1 --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=rocksdb --mysql-port=3307  prepare 
+$  sysbench oltp_insert.lua run --threads=100 --time=3600 --table-size=5000000 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock1 --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=rocksdb --mysql-port=3307 --events=0 
+$ sysbench oltp_insert cleanup --threads=100
 ```
 
 ## OLTP Read-Only
@@ -81,7 +93,9 @@ OLTP tests try simulate transaction-oriented loads in the database, sysbench doe
 ### Prepare 
 10 tables, each with 10k rows:
 ```bash
-$ sysbench oltp_read_only prepare --tables=10 --table-size=100000
+$ sysbench oltp_read_only --threads=20 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=InnoDB --mysql-port=3306 prepare
+
+$ sysbench oltp_read_only --threads=20 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock1 --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=rocksdb --mysql-port=3307  prepare 
 ```
 ### Prewarming
 ```Prewarm``` the database is necessary which is the process that loads the tables into the buffer pool. We can simulate the steady-state performance more accurately.
