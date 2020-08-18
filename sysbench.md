@@ -70,7 +70,7 @@ $ sysbench bulk_insert cleanup --threads=20
 ```
 ### MyRocks
 ```bash
-$  sysbench bulk_insert.lua  --threads=20 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock1 --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=rocksdb --mysql-port=3307  prepare 
+$  sysbench oltp_insert.lua --threads=100 --time=3600 --table-size=5000000 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock --mysql-user=root --mysql-password=evia6587 --mysql-storage-engine=rocksdb --mysql-port=3306  prepare
 $ sysbench bulk_insert run  --threads=20 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock1 --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=rocksdb --mysql-port=3307 --events=0 --time=3600
 $ sysbench bulk_insert cleanup --threads=20
 ```
