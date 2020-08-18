@@ -64,7 +64,7 @@ sysbench --test=/home/lbh/sysbench-1.0.12/tests/include/oltp_legacy/oltp.lua --m
 Bulk insert does concurrent multi-low inserts, we specify how many threads we want and each one inserts into its own table. So the total number of tables is the same as the number of threads.
 ### InnoDB
 ```bash
-$  sysbench bulk_insert.lua  --threads=20 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=InnoDB --mysql-port=3306  prepare 
+$ sysbench bulk_insert.lua  --threads=20 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=InnoDB --mysql-port=3306  prepare 
 $ sysbench bulk_insert run --threads=20 --db-driver=mysql --mysql-db=sbtest --mysql-socket=/tmp/mysql.sock --mysql-user=root --mysql-password=evia6587 --mysql-table-engine=InnoDB --mysql-port=330--events=0 --time=3600
 $ sysbench bulk_insert cleanup --threads=20
 ```
