@@ -25,7 +25,7 @@ $ tar -xvf sysbench_1.0.12.orig.tar.gz
 $ ./autogen.sh
 $ ./configure
 $ make
-$ make install
+$ sudo make install
 ```
 
 cf) If you have MySQL headers and libraries in non-standard locations, you can specify them explicitly with `--with-mysql-includes` and `--with-mysql-libs` options to `./configure` like below example.
